@@ -1,5 +1,5 @@
-div.board.bg-white.p-4.d-flex.justify-content-between id=dom_id(board, 'title') data-controller="form"
-  h4.text-primary data-action="click->form#toggleTitle" data-form-target="title viewComponent" = board.title
-  = form_with model: board, data: { 'form-target': 'form' } do |form|
+div.board.bg-white.p-4.d-flex.justify-content-between id=dom_id(board, :title) data-controller='form'
+  h4.text-primary data-action='click->form#toggleTitle' data-form-target='title viewComponent' = board.title
+  = form_with model: board, data: { form_target: 'form' } do |form|
     = form.text_field :title, data: { action: 'focusout->form#update', form_target: 'titleInput formComponent' }, autofocus: true, hidden: true
       | =  board.title

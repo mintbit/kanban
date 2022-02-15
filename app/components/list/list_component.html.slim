@@ -3,26 +3,25 @@ li.new-kanban-list.text-white.bg-white.bg-opacity-10.rounded.ms-3[
   data-controller='list'
   id=dom_id(@list)
   data-url=list_path(@list)
-  is="turbo-frame"
+  is='turbo-frame'
 ]
-  div.p-2.d-flex.justify-content-between data-controller="form"
-    .h5.text-decoration-none.text-white.title data-action="click->form#toggleTitle" data-form-target="title viewComponent" = @list.title
-    = form_for @list, data: { 'form-target': 'form'} do |form|
-      = form.text_field('title', 'data-action': "focusout->form#update", 'data-form-target': "titleInput formComponent", autofocus: true, hidden:true)
+  div.p-2.d-flex.justify-content-between data-controller='form'
+    .h5.text-decoration-none.text-white.title data-action='click->form#toggleTitle' data-form-target='title viewComponent' = @list.title
+    = form_for @list, data: { form_target: 'form' } do |form|
+      = form.text_field :title, data: { action: 'focusout->form#update', form_target: 'titleInput formComponent' }, autofocus: true, hidden:true
         | =  @list.title
-
     .dropdown
-      a#listMenu.text-white aria-expanded="false" data-bs-toggle="dropdown" role="button"
-        i class="bi bi-three-dots"
-        = link_to "Delete", list_path(@list), method: "delete", class: "dropdown-menu px-3 text-decoration-none", 'aria-labelledby': "listMenu"
+      a#listMenu.text-white aria-expanded='false' data-bs-toggle='dropdown' role='button'
+        i class='bi bi-three-dots'
+        = link_to 'Delete', list_path(@list), method: :delete, class: 'dropdown-menu px-3 text-decoration-none', aria: { labelledby: 'listMenu' }
   div.list-items-height.overflow-scroll
     ul.kanban-list.p-0.m-0.px-2[
       data-list-id=@list.id
       id="list-cards-#{@list.id}"
-      is="turbo-frame"
+      is='turbo-frame'
       data-list-target='sortable'
       data-name='kanban-list'
     ]
       - if @list.cards.any?
-        = render(Card::CardComponent.with_collection(@list.cards))
-  = render(Card::CardFormComponent.new(list: @list))
+        = render Card::CardComponent.with_collection(@list.cards)
+  = render Card::CardFormComponent.new(list: @list)

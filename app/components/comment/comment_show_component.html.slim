@@ -7,4 +7,3 @@ li.list-group-item.border-0.px-0
       = link_to card_comment_path(@card, @comment), method: :delete do
         small Delete
     small = time_ago_in_words(@comment.created_at)
-
