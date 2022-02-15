@@ -1,0 +1,5 @@
+div id=dom_id(@comment) data-controller="form"
+  div data-form-target="viewComponent" hidden=true
+    = render Comment::CommentShowComponent.new(comment: @comment)
+  div data-form-target="formComponent"
+    = render Comment::CommentFormComponent.new(comment: @comment)

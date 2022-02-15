@@ -1,0 +1,2 @@
+= turbo_stream.update 'modal', render(Card::CardModalComponent.new(card: @card))
+= turbo_stream.replace @card, render(Card::CardComponent.new(card: @card))

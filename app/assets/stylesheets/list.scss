@@ -1,0 +1,19 @@
+.new-kanban-list{
+  .title, textarea{
+    border-radius: 3px;
+    box-shadow: none;
+    font-weight: 600;
+    height: 26px;
+    margin: -4px 0;
+    max-height: 256px;
+    min-height: 20px;
+    padding: 4px 8px;
+    resize: none !important;
+    color: black;
+    border: none;
+    overflow-wrap: break-word;
+    height: 28px;
+    overflow: hidden;
+    display: block;
+}
+}

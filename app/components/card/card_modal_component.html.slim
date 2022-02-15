@@ -1,0 +1,33 @@
+div class='modal-dialog modal-dialog-centered modal-lg'
+  div class='modal-content p-3'
+    = form_for @card, data: { form_target: 'form', controller: 'form' } do |form|
+      div.modal-header.py-0.border-0
+        div.d-flex.flex-column
+          = form.text_field :title, class: 'border-0 text-primary text-break fs-3 lg-sm', data: { action: 'focusout->form#submit' }
+          span.text-secondary
+            small in the list
+            span.fw-bold.ms-1 = @card.list&.title
+        button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'
+      div class='modal-body'
+        div.text-secondary.mt-3
+          span.fs-5 Description
+          = form.text_area :description, class: 'form-control', data: { action: 'focusout->form#submit' }
+      = turbo_stream_from @card
+      div.p-3
+        = render 'cards/attachments', card: @card
+    = render Card::CardFileUploadComponent.new(card: @card)
+    ul.list-unstyled.list-group.mx-3[
+      is='turbo-frame'
+      id="card-task-list#{@card.id}"
+    ]
+      = render Task::TaskComponent.with_collection(@card.tasks)
+    = render Task::NewTaskComponent.new(card: @card)
+    div.text-secondary.m-3
+      span.fs-5 Comments
+    ul.list-unstyled.list-group.mx-3[
+      is='turbo-frame'
+      id="card-comment-list-#{@card.id}"
+    ]
+      = render Comment::CommentComponent.with_collection(@card.comments)
+    .mx-3
+      = render Comment::NewCommentComponent.new(card: @card)

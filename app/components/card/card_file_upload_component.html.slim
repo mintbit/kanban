@@ -1,0 +1,4 @@
+= turbo_frame_tag dom_id(@card, 'attachment_form')
+  div.text-secondary.mb-3.mx-3
+    = form_for @card, data: { form_target: 'form', controller: 'form' } do |form|
+      = form.file_field :attachments, multiple: true, direct_upload: true, class: 'form-control', data: { action: 'change->form#submit' }

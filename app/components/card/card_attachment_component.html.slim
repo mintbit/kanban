@@ -1,0 +1,10 @@
+= turbo_frame_tag @attachment do
+  div.mt-3.d-flex.align-items-center.mb-2
+    - if @attachment.image?
+      = image_tag url_for(@attachment), class: 'img-thumbnail image col-4'
+    - else
+      span.text-primary.col-4.text-center
+        i class='bi bi-file-earmark fs-1'
+    span.ms-2.text-center.col-8
+      = link_to 'Remove', card_attachment_path(@attachment.record, @attachment), method: :delete, class: 'd-block'
+      a href=url_for(@attachment) target='_blank' = @attachment.filename

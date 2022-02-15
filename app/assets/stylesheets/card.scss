@@ -1,0 +1,9 @@
+.kanban-card{
+  &:hover  .card-menu{
+    opacity: 1;
+  }
+}
+
+.card-menu{
+  opacity: 0;
+}

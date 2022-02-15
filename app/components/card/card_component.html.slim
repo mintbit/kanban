@@ -1,0 +1,20 @@
+li.kanban-card.py-1[
+  data-card-id=@card.id
+  data-url=card_path(@card)
+  data-controller='form'
+  is='turbo-frame'
+  id=dom_id(@card)
+]
+  div.d-flex.justify-content-between.bg-secondary.p-2.rounded
+    = link_to card_path(@card), method: :get, class: 'text-white text-decoration-none' do
+      div.text-break[
+        role='button'
+        data-bs-toggle='modal'
+        data-bs-target='#cardModal'
+      ]
+        span.mt-2 = @card.title
+        div.text-opacity-50.text-white.text-truncate
+          small = @card.description
+    .card-menu
+      = link_to card_path(@card), method: :delete, class: 'px-3 pe-0 text-decoration-none' do
+        i class='bi bi-trash text-white'

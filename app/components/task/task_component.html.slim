@@ -1,0 +1,7 @@
+= turbo_frame_tag @task
+  li.list-group-item.d-flex.align-items-center.rounded.mb-2
+    div data-controller="form"
+      = form_for([@card, @task], id: 'task_form', html: { 'data-form-target': 'form' }) do |form|
+        = form.check_box :completed, class: "form-check-input", 'data-action': 'form#submit'
+    = link_to @task.description, [:edit, @card, @task], class: "ms-3 text-decoration-none"
+    = button_to '', [@card, @task], method: :delete, form_class: 'ms-auto', class: 'btn-close'

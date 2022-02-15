@@ -1,0 +1,17 @@
+= render 'board', board: @board
+
+div[
+  class="modal fade"
+  id="cardModal"
+  data-bs-keyboard="true"
+  tabindex="-1"
+  aria-labelledby="cardModalLabel"
+  aria-hidden=false
+]
+  = turbo_frame_tag "modal" do
+    div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+      div.text-black class="modal-content"
+        div class="modal-body"
+          span LOADING...
+        div class="modal-footer"
+          button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Close

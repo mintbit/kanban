@@ -1,0 +1,5 @@
+= form_for([@card, @comment], html: { class: 'my-2' }) do |form|
+  = form.text_field :description, class: "form-control bg-opacity-75", required: true,
+    placeholder: 'Write a Comment...', 'data-form-target': 'title'
+  = form.hidden_field :card_id, value: @card.id
+  = form.submit (@comment.persisted? ? 'Save' : 'Add comment'), class: "btn btn-sm btn-outline-primary px-4 mt-2"

@@ -1,0 +1,15 @@
+= turbo_frame_tag dom_id(@list, 'card_form')
+  div data-controller='form'
+    div.px-2[
+      hidden=true
+      data-form-target='formContainer formComponent'
+    ]
+      div.card.text-white.bg-white.bg-opacity-50.p-1.rounded.mb-2.btn-outline-secondary
+        div.d-flex.justify-content-end.mb-1
+          a.btn-close.btn-outline-secondary.btn-sm data-action='click->form#toggleForm'
+        = form_with model: @list.cards.build, id: 'card_form' do |form|
+          = form.text_field :title, class: 'form-control bg-opacity-75', required: true,
+            placeholder: 'Enter Title...', data: { form_target: 'title' }
+          = form.hidden_field :list_id, value: @list.id
+          = form.button 'Save', class: 'btn btn-primary opacity-75 mt-2'
+    = render Card::NewCardComponent.new

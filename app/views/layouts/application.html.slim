@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    = render 'head'
+  body
+    = render 'boards/title', board: @board
+    div.bg-primary.body-height.text-white.pt-4
+      = yield

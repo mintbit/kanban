@@ -1,0 +1,13 @@
+div data-controller="form"
+  = link_to "Add Task", [:new, @card, :task], method: :get, class: "btn btn-sm btn-primary my-4", data: { form_target: 'viewComponent' }, hidden: true
+  div.card.text-white.bg-white.bg-opacity-50.p-1.rounded.mb-2.btn-outline-secondary.p-3.my-2 data-form-target="formComponent"
+    = form_for [@card, @task] do |form|
+      = form.text_field :description, class: "form-control bg-opacity-75", required: true,
+        placeholder: 'Enter Task...', 'data-form-target': 'title'
+      = form.hidden_field :card_id, value: @card.id
+      div.d-flex.align-items-center.mt-3
+        = form.submit (@task.persisted? ? 'Save' : 'Add Task'), class: "btn btn-sm btn-primary px-4"
+        - if @task.persisted?
+          = link_to task_path(@task), method: :get, class: 'ms-2' do
+            small cancel
+
