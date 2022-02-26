@@ -38,16 +38,23 @@ export default class extends Controller {
 	}
 
 	terminateForm() {
-		let _this = this
-		document.addEventListener('keydown', (event) => {
-			event = event || window.event
-			if (event.key == 'Escape' || event.key == 'Esc' || event.keyCode == 27) {
-				if (_this.hasViewComponentTarget && _this.hasFormComponentTarget) {
-					this.viewComponentTarget.hidden = false
-					this.formComponentTarget.hidden = true
-					document.activeElement.blur()
+		if (this.hasFormComponentTarget) {
+			this.formComponentTarget.addEventListener("keyup", (event) => {
+				if (event.key === 'Enter') {
+					event.currentTarget.blur()
 				}
-			}
-		})
+			})
+
+			document.addEventListener('keyup', (event) => {
+				event = event || window.event
+				if (event.key == 'Escape' || event.key == 'Esc') {
+					if (this.hasViewComponentTarget && this.formComponentTarget) {
+						this.viewComponentTarget.hidden = false
+						this.formComponentTarget.hidden = true
+						document.activeElement.blur()
+					}
+				}
+			})
+		}
 	}
 }
